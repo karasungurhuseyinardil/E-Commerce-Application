@@ -92,4 +92,42 @@ class Cart {
         return items;
     }
 }
+class Order {
+    private User user;
+    private Map<Product, Integer> items;
+    private double totalPrice;
+    private Date orderDate;
+    private String status;
 
+    public Order(User user, Map<Product, Integer> items, double totalPrice) {
+        this.user = user;
+        this.items = items;
+        this.totalPrice = totalPrice;
+        this.orderDate = new Date();
+        this.status = "Pending";
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Map<Product, Integer> getItems() {
+        return items;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
