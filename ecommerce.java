@@ -131,3 +131,66 @@ class Order {
         this.status = status;
     }
 }
+public class ECommerceApp {
+    private static List<User> users = new ArrayList<>();
+    private static List<Product> products = new ArrayList<>();
+    private static List<Order> orders = new ArrayList<>();
+    private static User currentUser = null;
+    private static Cart cart = new Cart();
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean running = true;
+
+        while (running) {
+            if (currentUser == null) {
+                System.out.println("1. Register");
+                System.out.println("2. Login");
+                System.out.println("3. Exit");
+                int choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        register(scanner);
+                        break;
+                    case 2:
+                        login(scanner);
+                        break;
+                    case 3:
+                        running = false;
+                        break;
+                }
+            } else {
+                System.out.println("1. View Products");
+                System.out.println("2. Add Product");
+                System.out.println("3. View Cart");
+                System.out.println("4. Checkout");
+                System.out.println("5. View Orders");
+                System.out.println("6. Logout");
+                int choice = scanner.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        viewProducts();
+                        break;
+                    case 2:
+                        addProduct(scanner);
+                        break;
+                    case 3:
+                        viewCart();
+                        break;
+                    case 4:
+                        checkout();
+                        break;
+                    case 5:
+                        viewOrders();
+                        break;
+                    case 6:
+                        currentUser = null;
+                        break;
+                }
+            }
+        }
+
+        scanner.close();
+    }
