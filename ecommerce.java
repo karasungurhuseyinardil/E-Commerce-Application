@@ -194,3 +194,31 @@ public class ECommerceApp {
 
         scanner.close();
     }
+private static void register(Scanner scanner) {
+        System.out.print("Enter username: ");
+        String username = scanner.next();
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+        System.out.print("Enter email: ");
+        String email = scanner.next();
+
+        users.add(new User(username, password, email));
+        System.out.println("Registration successful!");
+    }
+
+    private static void login(Scanner scanner) {
+        System.out.print("Enter username: ");
+        String username = scanner.next();
+        System.out.print("Enter password: ");
+        String password = scanner.next();
+
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                currentUser = user;
+                System.out.println("Login successful!");
+                return;
+            }
+        }
+
+        System.out.println("Invalid username or password.");
+    }
