@@ -222,3 +222,23 @@ private static void register(Scanner scanner) {
 
         System.out.println("Invalid username or password.");
     }
+ private static void viewProducts() {
+        System.out.println("Available Products:");
+        for (Product product : products) {
+            System.out.println("Name: " + product.getName() + ", Price: " + product.getPrice() + ", Stock: " + product.getStock() + ", Description: " + product.getDescription());
+        }
+    }
+
+    private static void addProduct(Scanner scanner) {
+        System.out.print("Enter product name: ");
+        String name = scanner.next();
+        System.out.print("Enter product price: ");
+        double price = scanner.nextDouble();
+        System.out.print("Enter product stock: ");
+        int stock = scanner.nextInt();
+        System.out.print("Enter product description: ");
+        String description = scanner.next();
+
+        products.add(new Product(name, price, stock, description));
+        System.out.println("Product added successfully!");
+    }
