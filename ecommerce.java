@@ -32,6 +32,7 @@ class User {
         this.email = email;
     }
 }
+
 class Product {
     private String name;
     private double price;
@@ -69,6 +70,7 @@ class Product {
         this.description = description;
     }
 }
+
 class Cart {
     private Map<Product, Integer> items;
 
@@ -92,6 +94,7 @@ class Cart {
         return items;
     }
 }
+
 class Order {
     private User user;
     private Map<Product, Integer> items;
@@ -131,6 +134,7 @@ class Order {
         this.status = status;
     }
 }
+
 public class ECommerceApp {
     private static List<User> users = new ArrayList<>();
     private static List<Product> products = new ArrayList<>();
@@ -194,7 +198,8 @@ public class ECommerceApp {
 
         scanner.close();
     }
-private static void register(Scanner scanner) {
+
+    private static void register(Scanner scanner) {
         System.out.print("Enter username: ");
         String username = scanner.next();
         System.out.print("Enter password: ");
@@ -222,7 +227,8 @@ private static void register(Scanner scanner) {
 
         System.out.println("Invalid username or password.");
     }
- private static void viewProducts() {
+
+    private static void viewProducts() {
         System.out.println("Available Products:");
         for (Product product : products) {
             System.out.println("Name: " + product.getName() + ", Price: " + product.getPrice() + ", Stock: " + product.getStock() + ", Description: " + product.getDescription());
@@ -242,3 +248,30 @@ private static void register(Scanner scanner) {
         products.add(new Product(name, price, stock, description));
         System.out.println("Product added successfully!");
     }
+
+    private static void viewCart() {
+        System.out.println("Cart Contents:");
+        for (Map.Entry<Product, Integer> entry : cart.getItems().entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+            System.out.println("Name: " + product.getName() + ", Quantity: " + quantity + ", Price: " + product.getPrice());
+        }
+        System.out.println("Total Price: " + cart.getTotalPrice());
+    }
+
+    private static void checkout() {
+        Order order = new Order(currentUser, cart.getItems(), cart.getTotalPrice());
+        orders.add(order);
+        cart = new Cart();
+        System.out.println("Order placed successfully!");
+    }
+
+    private static void viewOrders() {
+        System.out.println("Your Orders:");
+        for (Order order : orders) {
+            if (order.getUser().equals(currentUser)) {
+                System.out.println("Order Date: " + order.getOrderDate() + ", Total Price: " + order.getTotalPrice() + ", Status: " + order.getStatus());
+            }
+        }
+    }
+}
